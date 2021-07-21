@@ -1,11 +1,7 @@
 
-// Einfache Komponente
+// Definition einer einfachen Komponente
 export function HalloWelt() {
     return <h1>Hallo Welt.</h1>;
-}
-
-export function HalloEarth() {
-    return <h1>Hallo Earth.</h1>;
 }
 
 // interface für Komponente mit Übergabeparametern
@@ -23,3 +19,11 @@ export const Hallo2 = () => { return <h2>Hallo kleine Welt.</h2> };
 
 export const Hallo3 = () => <h3>Hallo nochmal.</h3>;
 
+// Schachtelung und Übergabeparameter
+export function HalloUniverse() {
+    return (<>
+        <HalloWelt />
+        <Hallo name="Welt" sprache="de" />
+        <Hallo2 />
+    </>);
+}

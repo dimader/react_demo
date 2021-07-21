@@ -1,19 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { HalloEarth, HalloWelt, Hallo, Hallo2 } from './components/HalloWelt';
+import { Converter } from './components/ExampleConverter';
 
 function App() {
   return (
     <React.Fragment>
-      <HalloWelt />
-      <HalloEarth />
       
-      <Hallo name="react" sprache="Hallo" />
-      <Hallo name="Weeeellltt!!!" />
+      <Converter />
       
-      <Hallo2 />
-
     </React.Fragment>
   );
 }
