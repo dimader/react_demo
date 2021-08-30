@@ -68,5 +68,3 @@ export default function JsxTestCode() {
 function format(text: string): JSX.Element {
     return <span>{text}</span>;
 };
-
-

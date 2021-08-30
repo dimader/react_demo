@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Converter } from './components/ExampleConverter';
+import Overview from './components/Overview';
 
 function App() {
   return (
     <React.Fragment>
-      
-      <Converter />
-      
+      <Overview />
     </React.Fragment>
   );
 }
