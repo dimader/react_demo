@@ -133,23 +133,6 @@ interface TasksTableProps {
 };
 
 function TasksTable(props: TasksTableProps) {
-
-    const handleDeleteClick = (task: Task): void => {
-        // console.log("handleDeleteClick");
-        if (props.onDelete) {
-            props.onDelete(task);
-        }
-    };
-
-    const handleDoneClick = (task: Task): void => {
-        // console.log("handleDoneClick");
-        // task.done = true; // NICHT so!! Änderung an react vorbei!! UI wird nicht aktualisiert.
-
-        if (props.onDone) {
-            props.onDone(task);
-        }
-    };
-
     return (
         <React.Fragment>
             <h1>Aufgaben Tabelle</h1>
@@ -167,7 +150,7 @@ function TasksTable(props: TasksTableProps) {
 
                 {props.tableData.map(eachTask => {
                     return (
-                        <TaskRow key={eachTask.id} task={eachTask} onDeleteClick={handleDeleteClick} onDoneClick={handleDoneClick} />
+                        <TaskRow key={eachTask.id} task={eachTask} onDeleteClick={props.onDelete} onDoneClick={props.onDone} />
                     )
                 })}
             </table>

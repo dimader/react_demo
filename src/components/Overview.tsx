@@ -8,6 +8,7 @@ import {
 // Import der Komponenten
 import { Effect } from './demos/Effect';
 import { Converter } from './demos/ExampleConverter';
+import HookStateOverview from './demos/HookStateDemo';
 import { EventTypedLoop2 } from './demos/State';
 import { TasksView } from './task/TaskExample';
 
@@ -17,7 +18,8 @@ const components = [
     {decs: "Task Verwaltung", path:"/task", component: TasksView},
     {decs: "Converter", path:"/converter", component: Converter},
     {decs: "Event Demo", path:"/events", component: EventTypedLoop2},
-    {decs: "Effect Demo", path:"/effect", component: Effect}
+    {decs: "Effect Demo", path:"/effect", component: Effect},
+    {decs: "Hook State Demos", path:"/hookoverview", component: HookStateOverview},
 ];
 
 function Overview() {
