@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route,
     Link,
@@ -8,7 +9,7 @@ import {
 } from "react-router-dom";
 import "./Tasks.css";
 
-let isDebug: boolean = true;
+const isDebug: boolean = true;
 
 interface Task {
     id: number,
@@ -40,8 +41,12 @@ function readInitialData(): Task[] {
 export function TasksView() {
 
     // Datenhaltung auf der höchsten gemeinsamen Ebene
-    const [ data, setData ] = React.useState<Task[]>(() => readInitialData()); // Funktion übergeben für init Daten Erstellung / Wird einmalig aufgerufen.
+    const [ data, setData ] = React.useState<Task[]>([]);
     const [ nextId, setNextId ] = React.useState(0);
+
+    React.useEffect(() => {
+        setData(readInitialData());
+    }, []);
 
     const saveTask = (task: Task) => {
         // console.log("Speichern! " + task.description);
@@ -176,7 +181,7 @@ function TaskRow(props: TaskRowProps) {
         <td><input type="button" onClick={() => props.onDeleteClick(props.task)} value="Löschen" /></td>
         <td><input type="button" onClick={() => props.onDoneClick(props.task)} value="Erledigt" /></td>
     </tr>);
-}
+};
 
 interface TaskCreateProps {
     onSave: (task: Task) => void    // Event Handler

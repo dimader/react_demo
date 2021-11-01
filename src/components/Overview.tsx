@@ -10,6 +10,8 @@ import { Effect } from './demos/Effect';
 import { Converter } from './demos/ExampleConverter';
 import HookStateOverview from './demos/HookStateDemo';
 import { EventTypedLoop2 } from './demos/State';
+import UseStateOverview from './demos/UseStateDemo';
+import UseEffectOverview from './demos/UseEffectDemo';
 import { TasksView } from './task/TaskExample';
 
 export default Overview;
@@ -20,6 +22,8 @@ const components = [
     {decs: "Event Demo", path:"/events", component: EventTypedLoop2},
     {decs: "Effect Demo", path:"/effect", component: Effect},
     {decs: "Hook State Demos", path:"/hookoverview", component: HookStateOverview},
+    {decs: "useState Demos", path:"/usestate", component: UseStateOverview},
+    {decs: "useEffect Demos", path:"/useEffect", component: UseEffectOverview},
 ];
 
 function Overview() {
