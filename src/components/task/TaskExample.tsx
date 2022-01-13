@@ -1,13 +1,13 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import {
-    // BrowserRouter as Router,
-    HashRouter as Router,
+    BrowserRouter as Router,
     Switch,
     Route,
     Link,
     useHistory
 } from "react-router-dom";
 import "./Tasks.css";
+import setInputChange from "./input-util";
 
 const isDebug: boolean = true;
 
@@ -186,12 +186,14 @@ function TaskRow(props: TaskRowProps) {
 interface TaskCreateProps {
     onSave: (task: Task) => void    // Event Handler
 };
-
 function TaskCreate(props: TaskCreateProps) {
 
     const history = useHistory();
 
     const [data, setData] = useState<Task>(() => createTask(0, "", 3)); // Initial Wert macht sinn, sonst sind viele Attribute mit undefined belegt.
+
+    const [info, setInfo] = useState("Keine");
+    const [hasError, setHasError] = useState(false);
 
     const saveTask = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault(); // Sorgt dafür das das Submit die Seite nicht neu lädt.
@@ -206,20 +208,34 @@ function TaskCreate(props: TaskCreateProps) {
 
     // Genereller Handler um Änderungen zu übernehmen. 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        // "name" auswerten // "type" muss korrekt gesetzt sein
-        const target = event.target;
-        const name = target.name;
+        setInputChange(setData, event);
 
-        if (target.type === 'checkbox') {
-            setData({...data, [name]: target.checked} as Task);    
-        } else 
-        if (target.type === 'date') {
-            setData({...data, [name]: new Date(target.value)} as Task);
-            return;
-        } else {
-            // string
-            setData({...data, [name]: target.value} as Task);
+        // Validierung Möglichkeit 1: Synchron
+        // Trick um auf den aktuellen Zustand zuzugreifen:
+        // setData(prev => {
+        //     validate(prev);
+        //     return prev;
+        // });
+    };
+
+    // Validierung Möglichkeit 2: Asynchron
+    React.useEffect(() => {
+        validate(data);
+    }, [data]);
+
+    const validate = (currentData: Task) => {
+        let message = "";
+        if (currentData.description === "") {
+            message = message + "Beschreibung darf nicht leer sein. ";
         }
+        let now = new Date();
+        now.setHours(0,0,0,0);
+        if (currentData.dueDate < now) {
+            message = message + "Datum darf nicht in der Vergangenheit liegen. ";
+        }
+
+        setInfo(message);
+        setHasError(message !== "");
     };
 
     return (
@@ -237,8 +253,8 @@ function TaskCreate(props: TaskCreateProps) {
                 <select 
                     id="prio" 
                     value={data?.prio} 
-                    onChange={e => setData({...data, prio: parseInt(e.target.value)} as Task)}
-                    // onChange={handleInputChange} // abweichender Typ notwendig: ChangeEventHandler<HTMLSelectElement>
+                    onChange={e => setData({...data, prio: parseInt(e.target.value)} as Task)} // value ist immer string
+                    // onChange={handleInputChange} // abweichender Typ: ChangeEventHandler<HTMLSelectElement>
                 >
                     <option value="1">1 - Wichtig</option>
                     <option value="2">2 - Irgendwie schon wichtig</option>
@@ -264,7 +280,7 @@ function TaskCreate(props: TaskCreateProps) {
                 />
 
                 <p />
-                <input type="submit" value="Erstellen" />
+                <input type="submit" value="Erstellen" disabled={hasError} />
 
                 <p />
                 {
@@ -273,6 +289,13 @@ function TaskCreate(props: TaskCreateProps) {
                 }
                 {/* String(data?.done) - String umwandlung muss sein, sonst erfolgt keine Ausgabe */}
 
+                {
+                    <>
+                        <p />
+                        <span>Info: {info}</span>
+                    </>
+                }
+                
             </form>
         </React.Fragment>
     );
