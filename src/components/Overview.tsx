@@ -13,11 +13,13 @@ import { EventTypedLoop2 } from './demos/State';
 import UseStateOverview from './demos/UseStateDemo';
 import UseEffectOverview from './demos/UseEffectDemo';
 import { TasksView } from './task/TaskExample';
+import { TasksViewUncontrolled } from './task/TaskExampleUncontrolled';
 
 export default Overview;
 
 const components = [
     {decs: "Task Verwaltung", path:"/task", component: TasksView},
+    {decs: "Task Verwaltung (Uncontrolled)", path:"/taskuncontrolled", component: TasksViewUncontrolled},
     {decs: "Converter", path:"/converter", component: Converter},
     {decs: "Event Demo", path:"/events", component: EventTypedLoop2},
     {decs: "Effect Demo", path:"/effect", component: Effect},
