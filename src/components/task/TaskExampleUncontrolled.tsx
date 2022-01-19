@@ -1,6 +1,5 @@
 import React, { FormEvent, useRef } from 'react';
 import {
-    HashRouter as Router,
     Switch,
     Route,
     Link,
@@ -69,15 +68,14 @@ export function TasksViewUncontrolled() {
 
     return (
         <React.Fragment>
-            <Router>    {/* Muss alle Link-Elemente und Switch-Elemente umklammern, deswegen so weit "oben" in der Hierarchie. */}
-                <Navigation />
-                <Content 
-                    tableData={data} 
-                    onSave={saveTask} 
-                    onDelete={handleDelete}
-                    onDone={handleDone}
-                />
-            </Router>
+            {/* <Router> // Hier wegelassen da Router bereits in Overview enthalten ist. */}
+            <Navigation />
+            <Content 
+                tableData={data} 
+                onSave={saveTask} 
+                onDelete={handleDelete}
+                onDone={handleDone}
+            />
         </React.Fragment>
     );
 };
@@ -87,9 +85,9 @@ function Navigation() {
         <div>
             <nav>
                 ----
-                <Link to="/Tabelle">Tabelle</Link>
+                <Link to="/taskuncontrolled/Tabelle">Tabelle</Link>
                 ----
-                <Link to="/Neu">Erfassung</Link>
+                <Link to="/taskuncontrolled/Neu">Erfassung</Link>
             </nav>
         </div>
     );
@@ -105,7 +103,7 @@ interface ContentProps {
 function Content(props: ContentProps) {
     return (
         <Switch>
-            <Route path="/Tabelle">
+            <Route path="/taskuncontrolled/Tabelle">
                 <TasksTable 
                     tableData={props.tableData}
                     onDelete={props.onDelete}
@@ -113,11 +111,11 @@ function Content(props: ContentProps) {
                 />
             </Route>
 
-            <Route path="/Neu">
+            <Route path="/taskuncontrolled/Neu">
                 <TaskCreate onSave={props.onSave} />
             </Route>
             
-            <Route path="/"> {/* Default nicht vergessen, dass ist der Start-Pfad. */}
+            <Route path="/taskuncontrolled"> {/* Default nicht vergessen, dass ist der Start-Pfad. */}
                 <TasksTable 
                     tableData={props.tableData}
                     onDelete={props.onDelete}
@@ -208,7 +206,7 @@ function TaskCreate(props: TaskCreateProps) {
         props.onSave(task);
 
         // Navigieren zur Erf. Seite
-        history.push('/Tabelle');
+        history.push('/taskuncontrolled/Tabelle');
     };
 
     return (

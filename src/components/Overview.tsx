@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route,
     Link
@@ -34,7 +34,7 @@ function Overview() {
 
     return (<>
         <React.Fragment>
-            <Router>
+            <Router basename="/react_demo">
                 <p/><Link to="/">Zurück zur Übersicht</Link>
 
                 <Switch>
