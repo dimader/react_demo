@@ -34,7 +34,7 @@ function Overview() {
 
     return (<>
         <React.Fragment>
-            <Router basename="/react_demo">
+            <Router>
                 <p/><Link to="/">Zurück zur Übersicht</Link>
 
                 <Switch>
