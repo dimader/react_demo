@@ -15,6 +15,7 @@ import UseEffectOverview from './demos/UseEffectDemo';
 import { TasksView } from './task/TaskExample';
 import { TasksViewUncontrolled } from './task/TaskExampleUncontrolled';
 import UseReducerOverview from './demos/UseReducer';
+import ContextDemo from './demos/UseContextDemo';
 
 export default Overview;
 
@@ -28,6 +29,7 @@ const components = [
     {decs: "useState Demos", path:"/usestate", component: UseStateOverview},
     {decs: "useEffect Demos", path:"/useEffect", component: UseEffectOverview},
     {decs: "useReducer Demo", path:"/usereducer", component: UseReducerOverview},
+    {decs: "Context Demo", path:"/useContext", component: ContextDemo},
 ];
 
 function Overview() {
