@@ -14,6 +14,7 @@ import UseStateOverview from './demos/UseStateDemo';
 import UseEffectOverview from './demos/UseEffectDemo';
 import { TasksView } from './task/TaskExample';
 import { TasksViewUncontrolled } from './task/TaskExampleUncontrolled';
+import MemoOverview from './demos/MemoDemo';
 import UseReducerOverview from './demos/UseReducer';
 import ContextDemo from './demos/UseContextDemo';
 
@@ -30,6 +31,7 @@ const components = [
     {decs: "useEffect Demos", path:"/useEffect", component: UseEffectOverview},
     {decs: "useReducer Demo", path:"/usereducer", component: UseReducerOverview},
     {decs: "Context Demo", path:"/useContext", component: ContextDemo},
+    {decs: "Memo Demo", path:"/memo", component: MemoOverview},
 ];
 
 function Overview() {
