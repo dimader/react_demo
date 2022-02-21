@@ -17,6 +17,7 @@ import { TasksViewUncontrolled } from './task/TaskExampleUncontrolled';
 import MemoOverview from './demos/MemoDemo';
 import UseReducerOverview from './demos/UseReducer';
 import ContextDemo from './demos/UseContextDemo';
+import RefCallbackOverview from './demos/RefCallbackDemo';
 
 export default Overview;
 
@@ -32,6 +33,7 @@ const components = [
     {decs: "useReducer Demo", path:"/usereducer", component: UseReducerOverview},
     {decs: "Context Demo", path:"/useContext", component: ContextDemo},
     {decs: "Memo Demo", path:"/memo", component: MemoOverview},
+    {decs: "Ref Callback Demo", path:"/refcallback", component: RefCallbackOverview},
 ];
 
 function Overview() {
