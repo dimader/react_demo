@@ -1,22 +1,25 @@
 import {
-    Switch,
+    Routes,
     Route,
-    Link
+    Link,
+    Outlet
 } from "react-router-dom";
-import { Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 export default function HookStateOverview() {
     return (<>
-        <p/><Link to="/hookoverview">Zurück zu Hooks</Link>
+        <p/><Link to="">Zurück zu Hooks</Link>
 
-        <Switch>
-            <Route path="/hookoverview/counter" component={Counter} />
-            <Route path="/hookoverview/multicounter" component={CounterMultiple} />
-            <Route path="/hookoverview/flexcounter" component={CounterChooser} />
-            <Route path="/hookoverview/switchflexcounter" component={AntiCounterChooser} />
-            
-            <Route path="/hookoverview" component={HookOverviewLinks} />
-        </Switch>
+        <Routes>
+            <Route path="counter" element={<Counter />} />
+            <Route path="multicounter" element={<CounterMultiple />} />
+            <Route path="flexcounter" element={<CounterChooser />} />
+            <Route path="switchflexcounter" element={<AntiCounterChooser />} />
+
+            <Route path="/" element={<HookOverviewLinks />} />
+        </Routes>
+
+        <Outlet />
     </>);
 };
 
@@ -24,10 +27,10 @@ function HookOverviewLinks() {
     return (<>
         <div><nav>
 
-            <p/><Link to="/hookoverview/counter">Einfacher Zähler</Link>
-            <p/><Link to="/hookoverview/multicounter">Mehrere einfache Zähler</Link>
-            <p/><Link to="/hookoverview/flexcounter">Flexibele Anzahl Zähler</Link>
-            <p/><Link to="/hookoverview/switchflexcounter">Umschaltbarer Flexibeler Zähler</Link>
+            <p/><Link to="counter">Einfacher Zähler</Link>
+            <p/><Link to="multicounter">Mehrere einfache Zähler</Link>
+            <p/><Link to="flexcounter">Flexibele Anzahl Zähler</Link>
+            <p/><Link to="switchflexcounter">Umschaltbarer Flexibeler Zähler</Link>
             
         </nav></div>
     </>);

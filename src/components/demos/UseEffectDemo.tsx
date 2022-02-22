@@ -1,5 +1,5 @@
 import {
-    Switch,
+    Routes,
     Route,
     Link
 } from "react-router-dom";
@@ -7,14 +7,14 @@ import { Fragment, useState, useEffect } from 'react';
 
 export default function UseEffectOverview() {
     return (<>
-        <p/><Link to="/useEffect">Zurück zu useEffect</Link>
+        <p/><Link to="">Zurück zu useEffect</Link>
 
-        <Switch>
-            <Route path="/useEffect/useeffect" component={UseEffectLifeCycle} />
-            <Route path="/useEffect/useeffectdependencies" component={UseEffectDependencies} />
+        <Routes>
+            <Route path="useeffect" element={<UseEffectLifeCycle />} />
+            <Route path="useeffectdependencies" element={<UseEffectDependencies />} />
             
-            <Route path="/useEffect" component={UseEffectOverviewLinks} />
-        </Switch>
+            <Route path="/" element={<UseEffectOverviewLinks />} />
+        </Routes>
     </>);
 };
 
@@ -22,8 +22,8 @@ function UseEffectOverviewLinks() {
     return (<>
         <div><nav>
 
-            <p/><Link to="/useEffect/useeffect">useEffect Lifecycle</Link>
-            <p/><Link to="/useEffect/useeffectdependencies">useEffect Dependencies</Link>
+            <p/><Link to="useeffect">useEffect Lifecycle</Link>
+            <p/><Link to="useeffectdependencies">useEffect Dependencies</Link>
             
         </nav></div>
     </>);

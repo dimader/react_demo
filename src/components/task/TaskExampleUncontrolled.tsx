@@ -1,9 +1,9 @@
 import React, { FormEvent, useRef } from 'react';
 import {
-    Switch,
+    Routes,
     Route,
     Link,
-    useHistory
+    useNavigate
 } from "react-router-dom";
 import "./Tasks.css";
 
@@ -85,9 +85,9 @@ function Navigation() {
         <div>
             <nav>
                 ----
-                <Link to="/taskuncontrolled/Tabelle">Tabelle</Link>
+                <Link to="Tabelle">Tabelle</Link>
                 ----
-                <Link to="/taskuncontrolled/Neu">Erfassung</Link>
+                <Link to="Neu">Erfassung</Link>
             </nav>
         </div>
     );
@@ -102,27 +102,29 @@ interface ContentProps {
 
 function Content(props: ContentProps) {
     return (
-        <Switch>
-            <Route path="/taskuncontrolled/Tabelle">
+        <Routes>
+            <Route path="Tabelle" element={
                 <TasksTable 
                     tableData={props.tableData}
                     onDelete={props.onDelete}
                     onDone={props.onDone} 
                 />
+                }>
             </Route>
 
-            <Route path="/taskuncontrolled/Neu">
-                <TaskCreate onSave={props.onSave} />
+            <Route path="Neu" element={<TaskCreate onSave={props.onSave} />}>
+                
             </Route>
             
-            <Route path="/taskuncontrolled"> {/* Default nicht vergessen, dass ist der Start-Pfad. */}
+            <Route path="/" element={ /* Default nicht vergessen, dass ist der Start-Pfad. */
                 <TasksTable 
                     tableData={props.tableData}
                     onDelete={props.onDelete}
                     onDone={props.onDone} 
                 />
+                }>
             </Route>
-        </Switch>
+        </Routes>
     );
 };
 
@@ -184,7 +186,7 @@ interface TaskCreateProps {
 
 function TaskCreate(props: TaskCreateProps) {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     // const [data, setData] = useState<Task>(() => createTask(0, "", 3));
 
@@ -206,7 +208,7 @@ function TaskCreate(props: TaskCreateProps) {
         props.onSave(task);
 
         // Navigieren zur Erf. Seite
-        history.push('/taskuncontrolled/Tabelle');
+        navigate('/taskuncontrolled/Tabelle');
     };
 
     return (

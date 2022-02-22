@@ -1,5 +1,5 @@
 import {
-    Switch,
+    Routes,
     Route,
     Link
 } from "react-router-dom";
@@ -7,15 +7,15 @@ import { Fragment, useState } from 'react';
 
 export default function UseStateOverview() {
     return (<>
-        <p/><Link to="/usestate">Zurück zu useState</Link>
+        <p/><Link to="">Zurück zu useState</Link>
 
-        <Switch>
-            <Route path="/usestate/prevcounter" component={CounterPrevStateTest} />
-            <Route path="/usestate/statechange" component={StateChangeTest} />
-            <Route path="/usestate/lazy" component={LazyStateTest} />
+        <Routes>
+            <Route path="prevcounter" element={<CounterPrevStateTest />} />
+            <Route path="statechange" element={<StateChangeTest />} />
+            <Route path="lazy" element={<LazyStateTest />} />
             
-            <Route path="/usestate" component={UseStateOverviewLinks} />
-        </Switch>
+            <Route path="/" element={<UseStateOverviewLinks />} />
+        </Routes>
     </>);
 };
 
@@ -23,9 +23,9 @@ function UseStateOverviewLinks() {
     return (<>
         <div><nav>
 
-            <p/><Link to="/usestate/prevcounter">Zähler mit funktionaler Aktualisierung</Link>
-            <p/><Link to="/usestate/statechange">Aktualisierung mit komplexen Daten</Link>
-            <p/><Link to="/usestate/lazy">Lazy initialisierung</Link>
+            <p/><Link to="prevcounter">Zähler mit funktionaler Aktualisierung</Link>
+            <p/><Link to="statechange">Aktualisierung mit komplexen Daten</Link>
+            <p/><Link to="lazy">Lazy initialisierung</Link>
             
         </nav></div>
     </>);
