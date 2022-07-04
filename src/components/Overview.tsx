@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     HashRouter as Router,
     Routes,
@@ -18,47 +17,58 @@ import MemoOverview from './demos/MemoDemo';
 import UseReducerOverview from './demos/UseReducer';
 import ContextDemo from './demos/UseContextDemo';
 import RefCallbackOverview from './demos/RefCallbackDemo';
+import RoutingDemo from "./demos/RoutingDemo";
 
 export default Overview;
 
+/**
+ * Array aller Demos.
+ * Wichtig hier ist das das "Component"-Attribut Großgeschrieben ist. Damit kann es als JSX-Element
+ * verwendet werden.
+ */
 const components = [
-    {decs: "Task Verwaltung", path:"/task/", Component: TasksView},
-    {decs: "Task Verwaltung (Uncontrolled)", path:"/taskuncontrolled/", Component: TasksViewUncontrolled},
-    {decs: "Converter", path:"/converter/", Component: Converter},
-    {decs: "Event Demo", path:"/events/", Component: EventTypedLoop2},
-    {decs: "Effect Demo", path:"/effect/", Component: Effect},
-    {decs: "Hook State Demos", path:"hookoverview/", Component: HookStateOverview},
-    {decs: "useState Demos", path:"/usestate/", Component: UseStateOverview},
-    {decs: "useEffect Demos", path:"/useEffect/", Component: UseEffectOverview},
-    {decs: "useReducer Demo", path:"/usereducer/", Component: UseReducerOverview},
-    {decs: "Context Demo", path:"/useContext/", Component: ContextDemo},
-    {decs: "Memo Demo", path:"/memo/", Component: MemoOverview},
-    {decs: "Ref Callback Demo", path:"/refcallback/", Component: RefCallbackOverview},
+    {desc: "Task Verwaltung", path:"/task/", Component: TasksView},
+    {desc: "Task Verwaltung (Uncontrolled)", path:"/taskuncontrolled/", Component: TasksViewUncontrolled},
+    {desc: "Converter", path:"/converter/", Component: Converter},
+    {desc: "Event Demo", path:"/events/", Component: EventTypedLoop2},
+    {desc: "Effect Demo", path:"/effect/", Component: Effect},
+    {desc: "Hook State Demos", path:"/hookoverview/", Component: HookStateOverview},
+    {desc: "useState Demos", path:"/usestate/", Component: UseStateOverview},
+    {desc: "useEffect Demos", path:"/useEffect/", Component: UseEffectOverview},
+    {desc: "useReducer Demo", path:"/usereducer/", Component: UseReducerOverview},
+    {desc: "Context Demo", path:"/useContext/", Component: ContextDemo},
+    {desc: "Memo Demo", path:"/memo/", Component: MemoOverview},
+    {desc: "Ref Callback Demo", path:"/refcallback/", Component: RefCallbackOverview},
+    {desc: "Routing Demo", path:"/routing/", Component: RoutingDemo},
 ];
 
 function Overview() {
 
     return (<>
-        <React.Fragment>
-            <Router>
-                <p/><Link to="/">Zurück zur Übersicht</Link>
+        <Router>
+            <p/><Link to="/">Zurück zur Übersicht</Link>
 
-                <Routes>
-                    
-                    {
-                        components.map(eachComponent => {
-                            return <Route path={eachComponent.path + '*'} element={<eachComponent.Component />} />
-                        })
-                    }
+            <Routes>
+                
+                {
+                    components.map(eachComponent => {
+                        // Component-Attribut wird direkt als JSX-Element gesetzt.
+                        // Das '*' wird für die Nested-Navigation benötigt.
+                        return <Route path={eachComponent.path + '*'} element={<eachComponent.Component />} />
+                    })
+                }
 
-                    <Route path="/" element={<Links />} />
+                <Route path="/" element={<Links />} />
 
-                </Routes>
-            </Router>
-        </React.Fragment>
+            </Routes>
+        </Router>
     </>);
 };
 
+/**
+ * Auflistung der Links zu allen Demos.
+ * @returns JSX
+ */
 function Links() {
     return (<>
         <h1>Übersicht</h1>
@@ -68,7 +78,7 @@ function Links() {
 
                 {
                     components.map(eachComponent => {
-                        return <><p/><Link to={eachComponent.path}>{eachComponent.decs}</Link> </>
+                        return <><p/><Link to={eachComponent.path}>{eachComponent.desc}</Link> </>
                     })
                 }
 

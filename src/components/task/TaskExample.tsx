@@ -112,21 +112,17 @@ function Content(props: ContentProps) {
                     onDelete={props.onDelete}
                     onDone={props.onDone} 
                 />
-                }>
-            </Route>
+                } />
 
-            <Route path="Neu" element={<TaskCreate onSave={props.onSave} />}>
-                
-            </Route>
-            
+            <Route path="Neu" element={<TaskCreate onSave={props.onSave} />} />
+
             <Route path="/" element={ /* Default nicht vergessen, dass ist der Start-Pfad. */
                 <TasksTable 
                     tableData={props.tableData}
                     onDelete={props.onDelete}
                     onDone={props.onDone} 
                 />
-                }>
-            </Route>
+                } />
         </Routes>
     );
 };
